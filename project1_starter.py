@@ -1,4 +1,4 @@
-import random  # Needed for random gold
+import os 
 #bored
 def create_character(name, character_class):
     level = 1
@@ -53,18 +53,23 @@ def save_character(character, filename):
     return True
 
 def load_character(filename):
+    if not os.path.exists(filename):
+        return None 
+
     file = open(filename, "r")
     lines = file.readlines()
     file.close()
+
     character = {}
     for line in lines:
         key, value = line.strip().split(": ")
         key = key.split()[0].lower()
         if key in ["level", "strength", "magic", "health", "gold"]:
             character[key] = int(value)
+        elif key == "character":
+            character["name"] = value
         else:
             character[key] = value
-    character["name"] = character["character"]
     return character
 
 def display_character(character):
