@@ -1,5 +1,5 @@
 import random  # Needed for random gold
-
+#bored
 def create_character(name, character_class):
     level = 1
     strength, magic, health = calculate_stats(character_class, level)
