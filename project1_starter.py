@@ -1,4 +1,5 @@
 import os 
+import random
 #bored
 def create_character(name, character_class):
     level = 1
