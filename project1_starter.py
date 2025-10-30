@@ -42,6 +42,10 @@ def calculate_stats(character_class, level):
     return (strength, magic, health)
 
 def save_character(character, filename):
+    directory = os.path.dirname(filename)
+    if directory and not os.path.exists(directory):
+        return False  # fail if directory doesn't exist
+
     file = open(filename, "w")
     file.write(f"Character Name: {character['name']}\n")
     file.write(f"Class: {character['class']}\n")
@@ -52,7 +56,7 @@ def save_character(character, filename):
     file.write(f"Gold: {character['gold']}\n")
     file.close()
     return True
-
+    
 def load_character(filename):
     if not os.path.exists(filename):
         return None 
